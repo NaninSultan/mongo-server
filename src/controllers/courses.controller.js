@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import Course from '../models/course.model';
 
 const create = (req, res) => {
@@ -7,7 +8,7 @@ const create = (req, res) => {
             return res.status(400).json(err.message);
         }
         res.status(201).json(data);
-    })
+    });
 }
 
 const read = (req, res) => {
@@ -54,7 +55,7 @@ const remove = (req, res) => {
 const list = (req, res) => {
     Course.find((err, data) => {
         if(err){
-            console.log(err);
+            return res.status(400).json(err.message);
         }
         res.status(200).json(data);
     });
